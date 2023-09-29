@@ -1,2 +1,2 @@
 # LeetcodePractice
- Leetcdoe 練習紀錄
+ Leetcode 練習紀錄
