@@ -66,7 +66,6 @@ class Solution {
                 if(!notVowel(s[i])&&!notVowel(s[j]))
                 swap(s[i], s[j]);
                 i++,j--;
-
             }     
             return s;
         }
