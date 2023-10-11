@@ -1,5 +1,7 @@
 # LeetcodePractice (Currently still under construction 目前尚未完成！！ )
- Leetcode 練習紀錄
+
+Leetcode 練習紀錄
+ 
 -------------------------------------
 ## 1. Crack the Coding Interview, 6th Edtion
 
@@ -15,6 +17,7 @@
 之再從 Sprint Interview 中挑幾個公司並開始刷
      
 之後這個讀我會更完善一點, 目前大概就是簡單的寫下
+
 -------------------------------------
 ## 3. 刷題實戰筆記
 
