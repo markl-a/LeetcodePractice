@@ -1,6 +1,6 @@
-# LeetcodePractice (Currently still under construction 目前尚未完成！！ )
+# LeetcodePractice 
 
-Leetcode 練習紀錄
+Leetcode 練習紀錄 (Currently still under construction 目前尚未完成！！ )
  
 -------------------------------------
 ## 1. Crack the Coding Interview, 6th Edtion
