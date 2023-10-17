@@ -11,7 +11,7 @@ class Solution {
         // now i == k
         curSum = maxSum;
 
-        // 会有 i == k == vectorSize 的情况
+        // 会有 k == vectorSize 的情况 , i 會小於0
         // 所以不能使用 do while
         while (i < vectorSize) {
             curSum += nums[i] - nums[i - k];
