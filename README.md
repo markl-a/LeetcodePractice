@@ -1,6 +1,8 @@
 # LeetcodePractice 
 
 Leetcode 練習紀錄 (Currently still under construction 目前尚未完成！！ )
+
+我的個人建議：先開始刷，再優化流程,方法跟各個方面
  
 -------------------------------------
 ## 1. Crack the Coding Interview, 6th Edtion
