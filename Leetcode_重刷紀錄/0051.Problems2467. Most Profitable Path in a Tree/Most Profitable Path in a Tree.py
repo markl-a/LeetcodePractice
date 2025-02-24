@@ -1,48 +1,60 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+from collections import defaultdict, deque
+from typing import List
+
 class Solution:
-    def constructFromPrePost(self, pre: List[int], post: List[int]) -> Optional[TreeNode]:
-        n = len(pre)
-        # 為了快速查找，把後序遍歷轉成字典，記錄每個值的位置
-        post_map = {x: i for i, x in enumerate(post)}
+    def mostProfitablePath(self, edges: List[List[int]], bob: int, amount: List[int]) -> int:
+        n = len(edges) + 1
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
         
-        def helper(pre_start: int, pre_end: int, post_start: int, post_end: int) -> Optional[TreeNode]:
-            # 如果範圍無效，返回空
-            if pre_start > pre_end:
-                return None
-            # 如果只有一個節點，直接返回
-            if pre_start == pre_end:
-                return TreeNode(pre[pre_start])
-                
-            # 創建當前節點
-            root = TreeNode(pre[pre_start])
+        parent = [-1] * n
+        queue = deque([0])
+        parent[0] = -1
+        while queue:
+            u = queue.popleft()
+            for v in adj[u]:
+                if parent[v] == -1 and v != parent[u]:
+                    parent[v] = u
+                    queue.append(v)
+        
+        bob_path = []
+        current = bob
+        while current != -1:
+            bob_path.append(current)
+            current = parent[current]
+        
+        bob_time = [float('inf')] * n
+        time = 0
+        for node in bob_path:
+            if time < bob_time[node]:
+                bob_time[node] = time
+                time += 1
+        
+
+        max_score = -float('inf')
+        
+        def dfs(u, parent_u, t, score):
+            nonlocal max_score
+            # 计算当前节点的得分
+            if t < bob_time[u]:
+                add = amount[u]
+            elif t == bob_time[u]:
+                add = amount[u] // 2
+            else:
+                add = 0
+            new_score = score + add
             
-            # 找左子樹的根在後序遍歷中的位置
-            left_root_val = pre[pre_start + 1]
-            left_root_post_idx = post_map[left_root_val]
+            is_leaf = True
+            for v in adj[u]:
+                if v != parent_u:
+                    is_leaf = False
+                    dfs(v, u, t + 1, new_score)
             
-            # 計算左子樹的大小
-            left_size = left_root_post_idx - post_start + 1
-            
-            # 遞迴構建左右子樹
-            root.left = helper(
-                pre_start + 1,                 # 左子樹前序起點
-                pre_start + left_size,         # 左子樹前序終點
-                post_start,                    # 左子樹後序起點
-                left_root_post_idx            # 左子樹後序終點
-            )
-            
-            root.right = helper(
-                pre_start + left_size + 1,     # 右子樹前序起點
-                pre_end,                       # 右子樹前序終點
-                left_root_post_idx + 1,        # 右子樹後序起點
-                post_end - 1                   # 右子樹後序終點
-            )
-            
-            return root
-            
-        return helper(0, n-1, 0, n-1)
+            if is_leaf:
+                if new_score > max_score:
+                    max_score = new_score
+        
+        dfs(0, -1, 0, 0)
+        return max_score
