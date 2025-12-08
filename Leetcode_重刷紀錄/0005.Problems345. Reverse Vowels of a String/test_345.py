@@ -59,7 +59,7 @@ class TestReverseVowels:
             # Mixed case
             ("Hello", "Holle"),
             ("LeetCode", "LeotCede"),
-            ("Programming", "Pragrammong"),
+            ("Programming", "Prigrammong"),
             # Two vowels
             ("ae", "ea"),
             ("EA", "AE"),
@@ -71,12 +71,12 @@ class TestReverseVowels:
             ("aaabbb", "aaabbb"),
             # Complex patterns
             ("race car", "race car"),
-            ("beautiful", "baeutifol"),
-            ("education", "adocetiun"),
+            ("beautiful", "buiutafel"),
+            ("education", "odicatuen"),
             # Vowels at edges
-            ("apple", "appla"),
-            ("orange", "erangO"),
-            ("umbrella", "ambrulla"),
+            ("apple", "eppla"),
+            ("orange", "erango"),
+            ("umbrella", "ambrellu"),
             # Long strings
             ("a" * 100 + "b" * 100, "a" * 100 + "b" * 100),
             ("aeiou" * 10, "uoiea" * 10),
@@ -93,9 +93,9 @@ class TestReverseVowels:
             ("racecar", "racecar"),
             ("level", "level"),
             # Upper and lower mixed
-            ("AaBbCc", "AaBbCc"),
+            ("AaBbCc", "aABbCc"),
             ("aEiOu", "uOiEa"),
-            ("HeLLo WoRLd", "HoLLe WeRLd"),
+            ("HeLLo WoRLd", "HoLLo WeRLd"),
         ],
     )
     def test_reverse_vowels(self, solution, s, expected):

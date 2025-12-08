@@ -57,11 +57,11 @@ class TestGCDOfStrings:
             ("ABCABCABC", "ABCABC", "ABC"),
             ("XYXYXYXY", "XYXY", "XYXY"),
             # Different lengths with GCD
-            ("ABCABCABCABC", "ABCABC", "ABC"),
+            ("ABCABCABCABC", "ABCABC", "ABCABC"),
             ("TAUXXTAUXXTAUXXTAUXXTAUXX", "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX", "TAUXX"),
-            # Long strings with single char GCD
-            ("A" * 100, "A" * 50, "A"),
-            ("AB" * 50, "AB" * 25, "AB"),
+            # Long strings - GCD of lengths determines result length
+            ("A" * 100, "A" * 50, "A" * 50),
+            ("AB" * 50, "AB" * 25, "AB" * 25),
             # No match at all
             ("AAAAAA", "BBBBBB", ""),
             ("ABCDEF", "GHIJKL", ""),
