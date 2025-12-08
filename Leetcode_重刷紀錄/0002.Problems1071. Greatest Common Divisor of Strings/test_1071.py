@@ -1,7 +1,18 @@
 """Tests for LeetCode 1071. Greatest Common Divisor of Strings"""
 
 import pytest
-from solution import Solution, SolutionRecursive, SolutionBruteForce
+from pathlib import Path
+import importlib.util
+
+# Dynamic import to avoid module name conflicts
+_solution_path = Path(__file__).parent / "solution.py"
+_spec = importlib.util.spec_from_file_location("solution_1071", _solution_path)
+_solution = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_solution)
+
+Solution = _solution.Solution
+SolutionRecursive = _solution.SolutionRecursive
+SolutionBruteForce = _solution.SolutionBruteForce
 
 
 class TestGCDOfStrings:

@@ -1,7 +1,18 @@
 """Tests for LeetCode 1768. Merge Strings Alternately"""
 
 import pytest
-from solution import Solution, SolutionAlternative
+import sys
+from pathlib import Path
+
+# Dynamic import to avoid module name conflicts
+_solution_path = Path(__file__).parent / "solution.py"
+import importlib.util
+_spec = importlib.util.spec_from_file_location("solution_1768", _solution_path)
+_solution = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_solution)
+
+Solution = _solution.Solution
+SolutionAlternative = _solution.SolutionAlternative
 
 
 class TestMergeStringsAlternately:

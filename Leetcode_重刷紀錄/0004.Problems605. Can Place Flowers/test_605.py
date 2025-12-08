@@ -1,7 +1,18 @@
 """Tests for LeetCode 605. Can Place Flowers"""
 
 import pytest
-from solution import Solution, SolutionNonModifying, SolutionCopy
+from pathlib import Path
+import importlib.util
+
+# Dynamic import to avoid module name conflicts
+_solution_path = Path(__file__).parent / "solution.py"
+_spec = importlib.util.spec_from_file_location("solution_605", _solution_path)
+_solution = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_solution)
+
+Solution = _solution.Solution
+SolutionNonModifying = _solution.SolutionNonModifying
+SolutionCopy = _solution.SolutionCopy
 
 
 class TestCanPlaceFlowers:
@@ -128,4 +139,4 @@ class TestCanPlaceFlowers:
         ]
 
         for flowerbed, n in test_cases:
-            assert solution.canPlaceFlowers(flowerbed.copy(), n) == True
+            assert solution.canPlaceFlowers(flowerbed.copy(), n) is True

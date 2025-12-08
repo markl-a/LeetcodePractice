@@ -1,7 +1,18 @@
 """Tests for LeetCode 1431. Kids With the Greatest Number of Candies"""
 
 import pytest
-from solution import Solution, SolutionExplicit, SolutionOnePass
+from pathlib import Path
+import importlib.util
+
+# Dynamic import to avoid module name conflicts
+_solution_path = Path(__file__).parent / "solution.py"
+_spec = importlib.util.spec_from_file_location("solution_1431", _solution_path)
+_solution = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_solution)
+
+Solution = _solution.Solution
+SolutionExplicit = _solution.SolutionExplicit
+SolutionOnePass = _solution.SolutionOnePass
 
 
 class TestKidsWithCandies:

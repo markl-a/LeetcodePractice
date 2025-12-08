@@ -94,6 +94,7 @@ testpaths = ["Leetcode_重刷紀錄"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
+pythonpath = ["."]
 addopts = """
     -v
     --strict-markers

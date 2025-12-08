@@ -1,7 +1,18 @@
 """Tests for LeetCode 345. Reverse Vowels of a String"""
 
 import pytest
-from solution import Solution, SolutionStack, SolutionTwoPass
+from pathlib import Path
+import importlib.util
+
+# Dynamic import to avoid module name conflicts
+_solution_path = Path(__file__).parent / "solution.py"
+_spec = importlib.util.spec_from_file_location("solution_345", _solution_path)
+_solution = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_solution)
+
+Solution = _solution.Solution
+SolutionStack = _solution.SolutionStack
+SolutionTwoPass = _solution.SolutionTwoPass
 
 
 class TestReverseVowels:

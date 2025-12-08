@@ -11,12 +11,11 @@
 
 ## 📊 進度總覽
 
-| 類別 | 已完成 | 總計 | 進度 |
-|------|--------|------|------|
-| **總題數** | 66 | - | - |
-| **Easy** | - | - | 🟢 |
-| **Medium** | - | - | 🟡 |
-| **Hard** | - | - | 🔴 |
+| 類別 | 已完成 | 有測試 | 進度 |
+|------|--------|--------|------|
+| **總題數** | 67 | 5 | - |
+| **標準格式** | 5 | 5 | 🟢 |
+| **待轉換** | 62 | 0 | 🟡 |
 
 ### 刷題計劃
 
@@ -33,16 +32,19 @@ LeetcodePractice/
 │   └── workflows/          # CI/CD 配置
 │       └── test.yml        # 自動化測試
 ├── Leetcode_重刷紀錄/       # LeetCode 題目解答
+│   ├── conftest.py         # pytest 配置（動態導入處理）
 │   ├── 0001.Problems1768. Merge Strings Alternately/
 │   │   ├── solution.py     # 主要解法（含類型註解和docstring）
-│   │   ├── test_solution.py # 完整測試案例
-│   │   └── MergeStringsAlternately.py  # 原始解法
+│   │   ├── test_1768.py    # 完整測試案例（以題號命名）
+│   │   └── __init__.py     # Python 包標識
 │   └── ...
-├── CrackingTheCodeInterview6thEdition_重刷筆記/
-├── 刷題實戰筆記＿重刷紀錄/
+├── scripts/
+│   ├── new_problem.sh      # 創建新題目模板
+│   ├── format_code.sh      # 程式碼格式化
+│   └── run_tests.sh        # 執行測試
+├── conftest.py             # 根目錄 pytest 配置
 ├── requirements.txt        # Python 依賴
 ├── pyproject.toml          # 專案配置
-├── .gitignore              # Git 忽略配置
 └── README.md               # 本文件
 ```
 
@@ -76,13 +78,28 @@ pip install -r requirements.txt
 pytest
 
 # 執行特定題目的測試
-pytest "Leetcode_重刷紀錄/0001.Problems1768. Merge Strings Alternately/test_solution.py"
+pytest "Leetcode_重刷紀錄/0001.Problems1768. Merge Strings Alternately/" -v
 
 # 執行測試並顯示覆蓋率
 pytest --cov=. --cov-report=html
 
 # 平行執行測試（加速）
 pytest -n auto
+```
+
+### 創建新題目
+
+使用腳本快速創建新題目模板：
+
+```bash
+# 用法: ./scripts/new_problem.sh <序號> <題號> <題目名稱> [難度]
+./scripts/new_problem.sh 68 2574 "Left and Right Sum Differences" easy
+
+# 這會創建：
+# - Leetcode_重刷紀錄/0068.Problems2574. Left and Right Sum Differences/
+#   ├── solution.py      # 解法模板
+#   ├── test_2574.py     # 測試模板
+#   └── __init__.py      # 包標識
 ```
 
 ### 程式碼品質檢查
